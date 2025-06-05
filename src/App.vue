@@ -11,7 +11,7 @@
 
       <v-divider></v-divider>
       <VListItem prepend-icon="mdi-home" title="Home" to="/"></VListItem>
-      <VListItem prepend-icon="mdi-home" title="About" to="/about"></VListItem>      
+      <VListItem prepend-icon="mdi-information" title="About" to="/about"></VListItem>      
       <VList>
         <VListGroup :value="title" v-for="([title, icon2]) in admins" :collapse="false">
           <template v-slot:activator="{ props }">
