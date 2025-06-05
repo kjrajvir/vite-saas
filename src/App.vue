@@ -58,7 +58,7 @@
 import { ref } from "vue";
 const theme = ref("light");
 const drawer = ref<boolean | null>(null);
-const open = ref(["Users"]);
+
 
 const admins = [
   ["Users", "mdi-account-multiple-outline"],
