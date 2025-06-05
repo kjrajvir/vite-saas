@@ -10,9 +10,10 @@
       </VList>
 
       <v-divider></v-divider>
-      <VListItem prepend-icon="mdi-home" title="Home"></VListItem>
+      <VListItem prepend-icon="mdi-home" title="Home" to="/"></VListItem>
+      <VListItem prepend-icon="mdi-home" title="About" to="/about"></VListItem>      
       <VList v-model:opened="open">
-        <VListGroup :value="title" v-for="([title, icon2], i) in admins" :collapse="false">
+        <VListGroup :value="title" v-for="([title, icon2]) in admins" :collapse="false">
           <template v-slot:activator="{ props }">
             <VListItem
               v-bind="props"
@@ -47,13 +48,13 @@
 
     <VMain>
       <VContainer fluid>
-        <HelloWorld msg="Vite + Vue" />
+        <router-view></router-view>
+
       </VContainer>
     </VMain>
   </VApp>
 </template>
 <script setup lang="ts">
-import HelloWorld from "@/components/HelloWorld.vue";
 import { ref } from "vue";
 const theme = ref("light");
 const drawer = ref<boolean | null>(null);
