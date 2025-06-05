@@ -1,3 +1,0 @@
-<template>
-    ABout PAge.
-</template>
