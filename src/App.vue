@@ -3,16 +3,16 @@
     <VNavigationDrawer v-model="drawer" expand-on-hover rail permanent>
       <VList>
         <VListItem
-          prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-          subtitle="sandra_a88@gmailcom"
-          title="Sandra Adams"
+          prepend-avatar="https://ui-avatars.com/api/?name=MI&background=random"
+          subtitle="info@majestincinfo.com"
+          title="My SAAS"
         ></VListItem>
       </VList>
 
       <v-divider></v-divider>
       <VListItem prepend-icon="mdi-home" title="Home" to="/"></VListItem>
       <VListItem prepend-icon="mdi-home" title="About" to="/about"></VListItem>      
-      <VList v-model:opened="open">
+      <VList>
         <VListGroup :value="title" v-for="([title, icon2]) in admins" :collapse="false">
           <template v-slot:activator="{ props }">
             <VListItem
