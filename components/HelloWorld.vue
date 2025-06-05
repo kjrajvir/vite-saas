@@ -1,4 +1,5 @@
 <template>
+    Home page.
     <VBtn color="primary">Vuetify Button</VBtn>
 </template>
 
