@@ -1,0 +1,8 @@
+@use './variables.scss' as *;
+
+.v-btn{
+    background: $primary-color;
+    color: white;
+    border-radius: 500px;
+    padding: 10px 20px;
+}
