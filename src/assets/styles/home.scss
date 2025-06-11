@@ -1,9 +1,6 @@
 @use './variables.scss' as *;
+@use './mixins.scss' as *;
 
-.v-btn{
-    background: transparent;
-    border: 1px solid $primary-color;
-    color: $primary-color;
-    border-radius: 500px;
-    padding: 10px 20px;
+.form-group {
+  @include v-outlined-style-main();
 }
