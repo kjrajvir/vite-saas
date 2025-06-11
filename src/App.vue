@@ -13,7 +13,7 @@
       <VListItem prepend-icon="mdi-home" title="Home" to="/"></VListItem>
       <VListItem prepend-icon="mdi-information" title="About" to="/about"></VListItem>      
       <VList>
-        <VListGroup :value="title" v-for="([title, icon2]) in admins" :collapse="false">
+        <VListGroup :key="title" :value="title" v-for="([title, icon2]) in admins" :collapse="false">
           <template v-slot:activator="{ props }">
             <VListItem
               v-bind="props"
@@ -46,7 +46,7 @@
       ></v-btn>
     </VAppBar>
 
-    <VMain>
+    <VMain width="100%">
       <VContainer fluid>
         <router-view></router-view>
 
@@ -84,4 +84,9 @@ body,
   margin: 0;
   padding: 0;
 }
+</style>
+<style lang="scss" scoped>
+// Import the partial file
+@use "@/assets/styles/nav";
+
 </style>
