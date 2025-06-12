@@ -12,8 +12,28 @@ export const vuetify = createVuetify({
     defaultSet: 'mdi', // Use Material Design Icons by default
   },  
   theme: {
-    defaultTheme: 'light'
-  },
+    defaultTheme: 'lightTheme',
+    themes: {
+      lightTheme: {
+        dark: false,
+        colors: {
+          primary: '#1976d2',
+          background: '#ffffff',
+          surface: '#f5f5f5',
+          onPrimary: '#ffffff',
+        },
+      },
+      darkTheme: {
+        dark: true,
+        colors: {
+          primary: '#90caf9',
+          background: '#121212',
+          surface: '#1e1e1e',
+          onPrimary: '#000000',
+        },
+      },
+    },
+  }, 
   components,
   directives,
 })

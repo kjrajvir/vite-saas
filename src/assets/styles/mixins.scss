@@ -1,84 +1,143 @@
-@use './variables.scss' as *;
+@use "./variables.scss" as *;
 
 // outlining style
-@mixin v-outlined-style($outline-color, $text-color: null, ) {
+@mixin v-outlined-style($outline-color, $text-color: null) {
 
-    .v-field__outline__notch::after,
-    .v-field__outline__notch::before,
-    .v-field__outline__end,
-    .v-field__outline__start {
-        border-color: $outline-color;
-    }
+  .v-field__outline__notch::after,
+  .v-field__outline__notch::before,
+  .v-field__outline__end,
+  .v-field__outline__start {
+    border-color: $outline-color;
+  }
 
-    // Normal Input
-    textarea,
-    input {
-        padding: 10px 8px;
-        min-height: auto;
-    }
+  // Normal Input
+  textarea,
+  input {
+    padding: 10px 10px;
+    min-height: auto;
+  }
 
-    // Normal Label
+  // Normal Label
+  label {
+    font-weight: $font-500;
+    font-size: $font-16;
+  }
+
+  // Up Label
+  .v-field__outline__notch {
     label {
-        font-weight: $font-500;
-        font-size: $font-16;
+      font-weight: $font-500;
+      font-size: $font-12;
+    }
+  }
+
+  // label and messages
+  @if $text-color {
+    .v-field__label {
+      color: $text-color;
     }
 
-    // Up Label
-    .v-field__outline__notch {
-        label {
-            font-weight: $font-500;
-            font-size: $font-12;
-        }
+    .v-messages__message {
+      color: $text-color;
+      font-weight: $font-400;
+      padding-inline: 16px;
+      padding-top: 6px;
     }
-
-    // label and messages
-    @if $text-color {
-        .v-field__label {
-            color: $text-color;
-        }
-
-        .v-messages__message {
-            color: $text-color;
-            font-weight: $font-400;
-        }
-    }
+  }
 }
 
-@mixin v-input-details-alignment() {
-    .v-input__details {
-        text-align: start;
-    }
+.custom-input.v-text-field .v-input__details {
+  padding-inline: 0;
+  padding-top: 0;
+  text-align: start;
+  min-height: unset;
+
+  .v-messages {
+    min-height: unset;
+  }
 }
 
 // .custom-input
 @mixin v-outlined-style-main() {
-    .custom-input {
+  .custom-input {
+    position: relative;
 
-        // Default state (unfocused, no error)
-        :deep(*) {
-            @include v-outlined-style($primary-color);
-            @include v-input-details-alignment();
-        }
-
-        // Focused state (no error)
-        &.v-input--focused {
-            :deep(*) {
-                @include v-outlined-style($secondary-color);
-            }
-        }
-
-        // Error state (unfocused)
-        &.v-input--error {
-            :deep(*) {
-                @include v-outlined-style($error-color, $error-color);
-            }
-        }
-
-        // Error state when focused
-        &.v-input--error.v-input--is-focused {
-            :deep(*) {
-                @include v-outlined-style($error-color, $error-color);
-            }
-        }
+    // Default state (unfocused, no error)
+    :deep(*) {
+      @include v-outlined-style($primary-color);
     }
+
+    // @include v-input-details-alignment();
+
+    // Focused state (no error)
+    &.v-input--focused {
+      :deep(*) {
+        @include v-outlined-style($secondary-color);
+      }
+    }
+
+    // Error state (unfocused)
+    &.v-input--error {
+      :deep(*) {
+        @include v-outlined-style($error-color, $error-color);
+      }
+    }
+
+    // Error state when focused
+    &.v-input--error.v-input--is-focused {
+      :deep(*) {
+        @include v-outlined-style($error-color, $error-color);
+      }
+    }
+
+    &.input-append {
+      @include v-outlined-style-append-main();
+    }
+
+    &.input-prepend {
+      @include v-outlined-style-prepend-main();
+    }
+  }
+}
+
+// .input-append
+@mixin v-outlined-style-append-main() {
+  :deep(.v-input__append) {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: 100%;
+  }
+
+  :deep(textarea),
+  :deep(input) {
+    padding-right: 48px;
+  }
+}
+
+// .input-prepend
+@mixin v-outlined-style-prepend-main() {
+  :deep(.v-input__prepend) {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 100%;
+  }
+
+  :deep(textarea),
+  :deep(input) {
+    padding-left: 48px;
+  }
+
+  :deep(label) {
+    padding-left: 28px;
+  }
+
+  :deep(.v-field__outline__notch label) {
+    padding-left: 0;
+  }
+
+  :deep(.v-field__outline__start) {
+    flex: 0 0 34px;
+  }
 }

@@ -1,102 +1,89 @@
 <template>
-  Home page.
-  <VBtn>Vuetify Button</VBtn>
   <v-form v-model="valid">
-    <v-container>
-      <v-row class="form-group">
-        <v-col cols="12" md="4">
-          <v-text-field
-            variant="outlined"
-            v-model="firstname"
-            :counter="10"
-            :rules="nameRules"
-            label="First name"
-            required
-            class="custom-input"
-          ></v-text-field>
-        </v-col>
+    <v-row class="form-group">
+      <v-col cols="12" md="4">
+        <v-text-field
+          variant="outlined"
+          v-model="firstname"
+          :counter="10"
+          :rules="nameRules"
+          label="First name"
+          required
+          class="custom-input"
+        ></v-text-field>
+      </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
-            variant="outlined"
-            v-model="lastname"
-            :counter="10"
-            :rules="nameRules"
-            label="Last name"
-            required
-            class="custom-input"
-          ></v-text-field>
-        </v-col>
+      <v-col cols="12" md="4">
+        <v-text-field
+          variant="outlined"
+          v-model="lastname"
+          :counter="10"
+          :rules="nameRules"
+          label="Last name"
+          required
+          class="custom-input"
+        ></v-text-field>
+      </v-col>
 
-        <v-col cols="12" md="4">
-          <v-text-field
-            variant="outlined"
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-            class="custom-input"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12" md="4">
-          <v-textarea
-            label="Textarea"
-            variant="outlined"
-            v-model="textarea"
-            :rules="textareaError"
-            placeholder="Enter your message"
-            class="custom-input"
-            rows="1"
-            required
-          ></v-textarea>
-        </v-col>
-      </v-row>
-    </v-container>
+      <v-col cols="12" md="4">
+        <v-text-field
+          variant="outlined"
+          v-model="email"
+          :rules="emailRules"
+          label="E-mail"
+          required
+          class="custom-input"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12" md="8">
+        <v-textarea
+          label="Textarea"
+          variant="outlined"
+          v-model="textarea"
+          :rules="textareaError"
+          placeholder="Enter your message"
+          class="custom-input"
+          rows="2"
+          required
+        ></v-textarea>
+      </v-col>
+    </v-row>
+    <div style="text-align: center">
+      <VBtn>Vuetify Button</VBtn>
+    </div>
   </v-form>
+  <FormAll />
 </template>
+<script setup lang="ts">
+import { ref } from "vue";
+import { defineOptions } from "vue";
+import FormAll from "./FormAll.vue";
 
-<script>
-export default {
-  data: () => ({
-    valid: false,
-    firstname: "",
-    lastname: "",
-    textarea: "",
-    nameRules: [
-      (value) => {
-        if (value) return true;
+defineOptions({
+  name: "HelloWorld",
+});
 
-        return "Name is required.";
-      },
-      (value) => {
-        if (value?.length <= 10) return true;
+const valid = ref(false);
+const firstname = ref("");
+const lastname = ref("");
+const textarea = ref("");
+const email = ref("");
 
-        return "Name must be less than 10 characters.";
-      },
-    ],
-    textareaError: [
-      (value) => {
-        if (value) return true;
+// Validation
+const nameRules = [
+  (value: string) => !!value || "Name is required.",
+  (value: string) =>
+    value?.length <= 10 || "Name must be less than 10 characters.",
+];
 
-        return "Meassge is required.";
-      },
-    ],
-    email: "",
-    emailRules: [
-      (value) => {
-        if (value) return true;
+const textareaError = [(value: string) => !!value || "Message is required."];
 
-        return "E-mail is required.";
-      },
-      (value) => {
-        if (/.+@.+\..+/.test(value)) return true;
-
-        return "E-mail must be valid.";
-      },
-    ],
-  }),
-};
+const emailRules = [
+  (value: string) => !!value || "E-mail is required.",
+  (value: string) => /.+@.+\..+/.test(value) || "E-mail must be valid.",
+];
 </script>
-<style lang="scss" scoped>
-@use "../assets/styles/home";
+
+<style scoped lang="scss">
+@use "../assets/styles/page/home.scss";
 </style>

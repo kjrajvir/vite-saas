@@ -1,6 +1,0 @@
-@use './variables.scss' as *;
-@use './mixins.scss' as *;
-
-.form-group {
-  @include v-outlined-style-main();
-}

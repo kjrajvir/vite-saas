@@ -1,0 +1,11 @@
+@use '../mixins.scss' as *;
+
+.form-group {
+  @include v-outlined-style-main();
+}
+
+.form-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
